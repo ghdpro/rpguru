@@ -1,0 +1,5 @@
+# JetBrains
+.idea
+
+# Setting Secrets
+settings/secrets.json
