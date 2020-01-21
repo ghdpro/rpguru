@@ -1,5 +1,11 @@
+# Python
+*.pyc
+
 # JetBrains
 .idea
 
 # Setting Secrets
 settings/secrets.json
+
+# Package Development
+changerequest

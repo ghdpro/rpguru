@@ -17,6 +17,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+DEFAULT_FROM_EMAIL = 'webmaster@rpguru.com'
+SERVER_EMAIL = 'root@rpguru.com'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -36,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required by django-allauth
+    'allauth',
+    'allauth.account',
+    'changerequest',
+    'rpguru.core'
 ]
 
 MIDDLEWARE = [
@@ -46,8 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'changerequest.middleware.ChangeRequestMiddleware'
 ]
-
 
 TEMPLATES = [
     {
@@ -74,9 +82,27 @@ DATABASES = {
         'HOST': '',  # unix socket
         'NAME': 'rpguru',
         'USER': 'rpguru',
-        'PASSWORD': secrets['database_password']
+        'PASSWORD': secrets['database_password'],
+        'TEST': {
+            'NAME': 'rpguru_test'
+        }
     }
 }
+
+AUTH_USER_MODEL = 'core.RPGuruUser'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+LOGIN_URL = '/account/login'
+LOGIN_REDIRECT_URL = '/account/profile'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_MIN_LENGTH = 3
+ACCOUNT_USERNAME_REQUIRED = True
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -97,6 +123,68 @@ AUTH_PASSWORD_VALIDATORS = [
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
+
+# Log file must be writable by Django server process
+from django.utils.log import DEFAULT_LOGGING
+LOGFILE = os.path.join(FILE_DIR, 'log', 'rpguru.log')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '[%(asctime)s] %(levelname)s %(message)s [%(name)s.%(funcName)s:%(lineno)d]',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[%(asctime)s] %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'production': {
+            'level': 'INFO',
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': LOGFILE,
+            'formatter': 'verbose',
+            'filters': ['require_debug_false'],
+        },
+        'debug': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': LOGFILE,
+            'formatter': 'verbose',
+            'filters': ['require_debug_true'],
+        },
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'production', 'debug'],
+            'level': 'DEBUG',
+        },
+        'django': {
+            'handlers': ['console', 'production', 'debug'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+    }
+}
 
 # Date format
 from django.conf.locale.en import formats as en_formats
