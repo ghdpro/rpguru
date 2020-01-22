@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'changerequest',
-    'rpguru.core'
+    'rpguru.core',
+    'rpguru.library'
 ]
 
 MIDDLEWARE = [
@@ -152,9 +153,9 @@ LOGGING = {
     'handlers': {
         'console': {
             'level': 'DEBUG',
-            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
+            'filters': ['require_debug_true'],
         },
         'production': {
             'level': 'INFO',

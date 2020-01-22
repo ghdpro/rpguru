@@ -60,6 +60,7 @@ class RPGuruUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['email']
 
     class Meta:
+        db_table = 'core_user'
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
