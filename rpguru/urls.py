@@ -9,6 +9,8 @@ from django.contrib import admin
 
 from allauth.account import views as account
 
+from .library.views import (FrontpageView)
+
 
 # URLs for django-allauth/account have been redefined here to remove the ending slash
 account_patterns = [
@@ -35,6 +37,11 @@ account_patterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include(account_patterns)),
+    path('platform/<slug:slug>', FrontpageView.as_view(), name='platform'),  # TODO: replace with proper view
+    path('series/<slug:slug>', FrontpageView.as_view(), name='franchise'),  # TODO: replace with proper view
+    path('company/<slug:slug>', FrontpageView.as_view(), name='company'),  # TODO: replace with proper view
+    path('genre/<slug:slug>', FrontpageView.as_view(), name='genre'),  # TODO: replace with proper view
+    path('', FrontpageView.as_view(), name='frontpage')
 ]
 
 if settings.DEBUG:

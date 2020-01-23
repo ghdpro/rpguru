@@ -183,6 +183,11 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
+        'asyncio': {
+            'handlers': ['console', 'production', 'debug'],
+            'level': 'INFO',
+            'propagate': False,
+        },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
 }

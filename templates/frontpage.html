@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome to RPGuru</h1>
+    <p>
+        This site is about Japanese games (as the name implies, mostly RPGs) and whether or not they retained the
+        Japanese voice track when they were localized and released in North America and Europe.
+        There are some that may find it odd, yet some people simply prefer playing games with the original voice track.
+    </p>
+    <p>
+        To be able to see which games properly support dual audio or not,
+        look for the following icons next to the game titles:
+    </p>
+    <ul class="list-group list-group-horizontal-lg mb-3">
+        <li class="list-group-item flex-fill text-center"><i class="far fa-check-circle verdict-good" title="Good! Dual audio!"></i> Game has dual audio option</li>
+        <li class="list-group-item flex-fill text-center"><i class="fas fa-exclamation-triangle verdict-okay" title="Caution!"></i> Possible issue, see description</li>
+        <li class="list-group-item flex-fill text-center"><i class="far fa-times-circle verdict-bad" title="No dual audio"></i> Game doesn't have dual audio option</li>
+    </ul>
+
+    <h2 class="text-center">Latest Games</h2>
+    {% for game in games %}
+        {% include 'library/_game.html' with game=game only %}
+    {% endfor %}
+
+{% endblock content %}
