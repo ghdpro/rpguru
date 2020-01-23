@@ -49,6 +49,22 @@
                     </div>
                 </div>
             </form>
+            <ul class="navbar-nav ml-md-3">
+                <li class="nav-item dropdown">
+                    <a class="navbar-brand d-flex align-items-center mr-0" href="{% if request.user.is_authenticated %}{% url 'account_profile' %}{% else %}{% url 'account_login' %}{% endif %}" data-toggle="dropdown">
+                        <img src="{% if request.user.is_authenticated %}{{ request.user.get_gravatar_url }}{% else %}https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;f=y{% endif %}" width="30" height="30" class="rounded" alt="{% if request.user.is_authenticated %}{{ request.user.username }}{% else %}Avatar{% endif %}">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        {% if request.user.is_authenticated %}
+                            <span class="dropdown-header">{{ request.user.username }}</span>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt fa-fw"></i> Logout</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt fa-fw"></i> Sign In</a>
+                            <a class="dropdown-item" href="{% url 'account_signup' %}"><i class="fas fa-user-plus fa-fw"></i> Sign Up</a>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
