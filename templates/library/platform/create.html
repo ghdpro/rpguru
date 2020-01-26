@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load core %}
+
+{% block head_title %}Create Platform | RPGuru{% endblock head_title %}
+
+{% block content %}
+    {% block content_title %}<h1><span class="text-muted">Create</span> Platform</h1>{% endblock content_title %}
+    <p>Leave unknown fields blank.</p>
+    <form action="{% block form_url %}{% url 'platform/create' %}{% endblock form_url %}" method="post">
+        {% csrf_token %}
+        {% include 'core/forms/_head.html' with form=form only %}
+        {% for field in form.visible_fields %}
+            {% if field in form|subset:'name,slug,short' %}
+                {% if field == form.name %}
+                    {% include 'core/forms/_row.html' with fields=form|subset:'name,slug,short' label='Name / Slug / Short' label_css='col-sm-2' field_css='col-sm-3,col-sm-4,col-sm-3' only %}
+                {% endif %}
+            {% else %}
+                {% include 'core/forms/_field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
+            {% endif %}
+        {% endfor %}
+	    <div class="form-group row">
+		    <div class="col-sm-2"></div>
+		    <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save fa-fw"></i> Save</button>
+                {% block form_buttons %}{% endblock form_buttons %}
+            </div>
+        </div>
+    </form>
+{% endblock content %}

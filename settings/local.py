@@ -5,6 +5,8 @@ from .base import *
 DEBUG = True
 ALLOWED_HOSTS = ['rpguru.test', 'localhost', '127.0.0.1']
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 LOGFILE = os.path.join(FILE_DIR, 'Projects/.log', 'rpguru.log')
 LOGGING['handlers']['production']['filename'] = LOGGING['handlers']['debug']['filename'] = LOGFILE
 

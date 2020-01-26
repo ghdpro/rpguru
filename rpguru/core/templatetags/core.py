@@ -38,9 +38,22 @@ def is_widget(field: object, value: str = None):
 
 
 @register.filter
+def subset(obj: dict, keys: str):
+    """Returns subset of the dictionary object with only the specified keys (as comma separated list)"""
+    return [obj[key] for key in keys.split(',')]
+
+
+@register.filter
 def csvlist(value: str, index: int) -> str:
     """Returns a single value from a comma separated list of values"""
     return str(value).split(',')[index]
+
+
+@register.simple_tag
+def get_absolute_url(obj, name, *args) -> str:
+    """"Calls get_absolute_url() method on a model object with a name argument"""
+    # Note: if you don't need the name argument, just use {{ model.get_absolute_url }} directly
+    return obj.get_absolute_url(name, *args)
 
 
 @register.simple_tag
