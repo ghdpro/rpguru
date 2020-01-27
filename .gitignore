@@ -4,7 +4,7 @@
 # JetBrains
 .idea
 
-# Setting Secrets
+# Configuration with secrets/passwords
 .env
 
 # Package Development
