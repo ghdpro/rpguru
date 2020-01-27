@@ -75,7 +75,7 @@ class RPGuruUser(AbstractBaseUser, PermissionsMixin):
             # Find unique slug
             i = 1
             while RPGuruUser.objects.filter(slug=self.slug).exists():
-                self.slug = '{}{}'.format(slug, i)
+                self.slug = f'{slug}{i}'
                 i += 1
         super().save(*args, **kwargs)
 

@@ -8,24 +8,23 @@ from .models import Platform
 from .forms import PlatformCreateForm, PlatformUpdateForm
 
 
-class PlatformCreateView(PermissionMessageMixin, HistoryFormViewMixin, CreateView):
+class PlatformModelFormMixin:
+    model = Platform
+
+    def get_success_url(self):
+        return self.object.get_absolute_url('platform/update')
+
+
+class PlatformCreateView(PermissionMessageMixin, HistoryFormViewMixin, PlatformModelFormMixin, CreateView):
     permission_required = 'library.add_platform'
     template_name = 'library/platform/create.html'
     form_class = PlatformCreateForm
-    model = Platform
-
-    def get_success_url(self):
-        return self.object.get_absolute_url('platform/update')
 
 
-class PlatformUpdateView(PermissionMessageMixin, HistoryFormViewMixin, UpdateView):
+class PlatformUpdateView(PermissionMessageMixin, HistoryFormViewMixin, PlatformModelFormMixin, UpdateView):
     permission_required = 'library.change_platform'
     template_name = 'library/platform/update.html'
     form_class = PlatformUpdateForm
-    model = Platform
-
-    def get_success_url(self):
-        return self.object.get_absolute_url('platform/update')
 
 
 class FrontpageView(TemplateView):

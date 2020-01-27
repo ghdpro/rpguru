@@ -26,6 +26,11 @@
 
 <main class="container rounded">
     <div class="alert alert-warning"><b>Note!</b> This site is still under construction. Consider the content of various pages not yet final.</div>
+
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+    {% endfor %}
+
     {% block content %}
     {% endblock content %}
 </main>
