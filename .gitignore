@@ -5,7 +5,7 @@
 .idea
 
 # Setting Secrets
-settings/secrets.json
+.env
 
 # Package Development
 changerequest
