@@ -37,6 +37,7 @@ account_patterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include(account_patterns)),
+    path('history/', include('changerequest.urls')),
     path('platform/create', PlatformCreateView.as_view(), name='platform/create'),
     path('platform/<slug:slug>/edit', PlatformUpdateView.as_view(), name='platform/update'),
     path('platform/<slug:slug>', FrontpageView.as_view(), name='platform'),  # TODO: replace with proper view

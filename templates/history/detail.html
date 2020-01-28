@@ -1,0 +1,15 @@
+{% extends 'history/_detail.html' %}
+
+{% block head_title %}{{ changerequest.get_object_type|title }} History{% endblock head_title %}
+
+{% block meta %}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block user %}
+    <img src="{{ changerequest.user.get_gravatar_url }}" width="22" height="22" class="rounded" alt="{{ cr.user.username }}"> {{ changerequest.user.username }}
+{% endblock user %}
+
+{% block mod %}
+    <img src="{{ changerequest.mod.get_gravatar_url }}" width="22" height="22" class="rounded" alt="{{ cr.mod.username }}"> {{ changerequest.mod.username }}
+{% endblock mod %}

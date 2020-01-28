@@ -1,0 +1,15 @@
+{% extends 'history/_list.html' %}
+
+{% block head_title %}Browse History{% endblock head_title %}
+
+{% block meta %}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block user %}
+    <img src="{{ cr.user.get_gravatar_url }}" width="22" height="22" class="rounded py-0" alt="{{ cr.user.username }}" title="{{ cr.user.username }}">
+{% endblock user %}
+
+{% block paginator %}
+    {% include 'core/_paginator.html' with page_obj=page_obj view=view only %}
+{% endblock paginator %}

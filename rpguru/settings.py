@@ -99,6 +99,24 @@ DATABASES = {
     }
 }
 
+if 'cache' in config and 'redis' in config['cache']:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': config['cache']['redis'],
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+            },
+            'KEY_PREFIX': 'rpguru'
+        }
+    }
+elif DEBUG:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
+
 if 'email' in config:
     if 'host' in config['email']:
         EMAIL_HOST = config.get('email', 'host')
