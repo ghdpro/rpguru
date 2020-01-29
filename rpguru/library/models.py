@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from changerequest.models import HistoryModel
 
-from ..core.models import Language
+from core.models import Language
 
 
 class Platform(HistoryModel):

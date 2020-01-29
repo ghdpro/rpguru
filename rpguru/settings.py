@@ -6,6 +6,10 @@ import json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILE_DIR = os.environ.get('HOME')
 
+# Load apps from 'rpguru' folder as if they were in project root
+import sys
+sys.path.insert(0, os.path.join(BASE_DIR, 'rpguru'))
+
 # Load configuration from INI-like .env file
 config = configparser.ConfigParser()
 config.read(os.path.join(BASE_DIR, '.env'))
@@ -52,8 +56,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'changerequest',
-    'rpguru.core',
-    'rpguru.library'
+    'core',
+    'library'
 ]
 
 MIDDLEWARE = [

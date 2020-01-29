@@ -9,7 +9,7 @@ from django.contrib import admin
 
 from allauth.account import views as account
 
-from .library.views import (PlatformCreateView, PlatformUpdateView, FrontpageView)
+from library.views import (PlatformCreateView, PlatformUpdateView, FrontpageView)
 
 
 # URLs for django-allauth/account have been redefined here to remove the ending slash
