@@ -60,3 +60,9 @@ def get_absolute_url(obj, name, *args) -> str:
 def call_method(obj, func, *args, **kwargs):
     """Calls method from specified object with arguments"""
     return getattr(obj, func)(*args, **kwargs)
+
+
+@register.filter
+def meta(model, attr: str) -> str:
+    """Returns _meta attribute of specified model"""
+    return str(getattr(model._meta, attr))
