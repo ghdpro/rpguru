@@ -67,6 +67,7 @@ def meta(model, attr: str) -> str:
     """Returns _meta attribute of specified model"""
     return str(getattr(model._meta, attr))
 
+
 @register.filter
 def concat(a: str, b: str) -> str:
     """Concatenate two strings together"""
