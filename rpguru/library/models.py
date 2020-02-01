@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 
 from changerequest.models import HistoryModel
+from artwork.models import ArtworkModel
 
 from core.models import Language
 
@@ -13,12 +14,23 @@ class Platform(HistoryModel):
     slug = models.SlugField(max_length=100, unique=True)
     short = models.CharField('short name', max_length=100)
     description = models.TextField(blank=True)
+    artwork_active = models.ForeignKey('PlatformArtwork', related_name='platform_artwork', on_delete=models.SET_NULL,
+                                       null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self, view='platform'):
         return reverse(view, args=[self.slug])
+
+
+class PlatformArtwork(ArtworkModel):
+    platform = models.ForeignKey(Platform, on_delete=models.PROTECT)
+
+    ARTWORK_FOLDER = 'platform'
+
+    def sub_folder(self):
+        return self.platform.pk
 
 
 class Franchise(HistoryModel):
@@ -76,6 +88,17 @@ class Game(HistoryModel):
     genre = models.ManyToManyField(Genre)
     verdict = models.PositiveSmallIntegerField('verdict', choices=Verdict.choices, default=Verdict.GOOD)
     description = models.TextField(blank=True)
+    artwork_active = models.ForeignKey('GameArtwork', related_name='game_artwork', on_delete=models.SET_NULL,
+                                       null=True, blank=True, default=None)
 
     def __str__(self):
         return self.title
+
+
+class GameArtwork(ArtworkModel):
+    game = models.ForeignKey(Game, on_delete=models.PROTECT)
+
+    ARTWORK_FOLDER = 'game'
+
+    def sub_folder(self):
+        return self.game.pk

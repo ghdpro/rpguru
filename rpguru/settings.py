@@ -52,10 +52,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',  # Required by django-allauth
+    'django.contrib.sites',  # Required for django-allauth
     'allauth',
     'allauth.account',
     'changerequest',
+    'artwork',
     'core',
     'library'
 ]
