@@ -4,18 +4,18 @@ from django import forms
 
 from changerequest.forms import HistoryCommentOptionalMixin
 
-from .models import Platform
+from .models import Platform, PlatformArtwork
 
 
-class PlatformCreateForm(HistoryCommentOptionalMixin, forms.ModelForm):
+class AttributeForm(HistoryCommentOptionalMixin, forms.ModelForm):
 
     class Meta:
-        model = Platform
         fields = ['name', 'slug', 'short', 'description']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 5}),
         }
 
 
-class PlatformUpdateForm(PlatformCreateForm):
-    pass
+PlatformArtworkForm = forms.models.modelform_factory(PlatformArtwork, fields=['image'])
+PlatformArtworkFormset = forms.models.inlineformset_factory(Platform, PlatformArtwork, form=PlatformArtworkForm,
+                                                            extra=1, can_delete=True)

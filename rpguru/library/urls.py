@@ -2,12 +2,13 @@
 
 from django.urls import path
 
-from library.views import (PlatformCreateView, PlatformUpdateView, FrontpageView)
+from library.models import Platform
+from library.views import (AttributeCreateView, AttributeUpdateView, FrontpageView)
 
 
 platform_urls = [
-    path('create', PlatformCreateView.as_view(), name='create'),
-    path('<slug:slug>/edit', PlatformUpdateView.as_view(), name='update'),
+    path('create', AttributeCreateView.as_view(model=Platform), name='create'),
+    path('<slug:slug>/edit', AttributeUpdateView.as_view(model=Platform), name='update'),
     path('<slug:slug>', FrontpageView.as_view(), name='detail'),  # TODO: replace with proper view
 ]
 
