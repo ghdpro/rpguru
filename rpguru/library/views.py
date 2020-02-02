@@ -8,13 +8,7 @@ from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin
 from .forms import AttributeForm
 
 
-class SuccessURLMixin:
-
-    def get_success_url(self):
-        return self.object.get_absolute_url(self.model._meta.model_name + ':update')
-
-
-class AttributeEditMixin:
+class AttributeMixin:
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -23,16 +17,18 @@ class AttributeEditMixin:
         # Inject Model into ModelForm
         self.form_class = forms.models.modelform_factory(self.model, self.form_class)
 
+    def get_success_url(self):
+        # Generate success URL dynamically based on Model name
+        return self.object.get_absolute_url(self.model._meta.model_name + ':update')
 
-class AttributeCreateView(PermissionMessageMixin, HistoryFormViewMixin, SuccessURLMixin,
-                          AttributeEditMixin, CreateView):
+
+class AttributeCreateView(PermissionMessageMixin, HistoryFormViewMixin, AttributeMixin, CreateView):
     permission_required = 'library.add_'
     template_name = 'library/create.html'
     form_class = AttributeForm
 
 
-class AttributeUpdateView(PermissionMessageMixin, HistoryFormViewMixin, SuccessURLMixin,
-                          AttributeEditMixin, UpdateView):
+class AttributeUpdateView(PermissionMessageMixin, HistoryFormViewMixin, AttributeMixin, UpdateView):
     permission_required = 'library.change_'
     template_name = 'library/update.html'
     form_class = AttributeForm
