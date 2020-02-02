@@ -6,6 +6,7 @@ from django.views.generic import CreateView, UpdateView, DetailView, TemplateVie
 from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin
 
 from .forms import AttributeForm
+from .models import Game
 
 
 class AttributeMixin:
@@ -32,6 +33,18 @@ class AttributeUpdateView(PermissionMessageMixin, HistoryFormViewMixin, Attribut
     permission_required = 'library.change_'
     template_name = 'library/update.html'
     form_class = AttributeForm
+
+
+class AttributeDetailView(DetailView):
+    template_name = 'library/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['games'] = Game.objects.filter(**{self.model._meta.model_name: context['object']})\
+            .select_related('franchise_main', 'franchise_side')\
+            .prefetch_related('audio', 'developer', 'publisher', 'genre', 'platform')\
+            .order_by('-na_date', '-jp_date', '-eu_date')
+        return context
 
 
 class FrontpageView(TemplateView):
