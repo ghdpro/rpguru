@@ -63,6 +63,14 @@ class Genre(HistoryModel):
         return self.name
 
 
+class GameCatalogue(models.Manager):
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('franchise_main', 'franchise_side')\
+            .prefetch_related('audio', 'developer', 'publisher', 'genre', 'platform')\
+            .order_by('-na_date', '-jp_date', '-eu_date')
+
+
 class Game(HistoryModel):
     class Verdict:
         GOOD = 1
@@ -90,6 +98,7 @@ class Game(HistoryModel):
     description = models.TextField(blank=True)
     artwork_active = models.ForeignKey('GameArtwork', related_name='game_artwork', on_delete=models.SET_NULL,
                                        null=True, blank=True, default=None)
+    cat = GameCatalogue()
 
     def __str__(self):
         return self.title

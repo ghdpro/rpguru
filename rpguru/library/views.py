@@ -40,10 +40,7 @@ class AttributeDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = Game.objects.filter(**{self.model._meta.model_name: context['object']})\
-            .select_related('franchise_main', 'franchise_side')\
-            .prefetch_related('audio', 'developer', 'publisher', 'genre', 'platform')\
-            .order_by('-na_date', '-jp_date', '-eu_date')
+        context['games'] = Game.cat.filter(**{self.model._meta.model_name: context['object']})
         return context
 
 
