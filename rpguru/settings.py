@@ -16,10 +16,10 @@ config.read(os.path.join(BASE_DIR, '.env'))
 
 DEBUG = config.getboolean('DEFAULT', 'debug', fallback=False)
 SECRET_KEY = config['DEFAULT']['secret_key']
-if 'allowed_hosts' not in config['DEFAULT']:
-    ALLOWED_HOSTS = ['.rpguru.com']
-else:
+if 'allowed_hosts' in config['DEFAULT']:
     ALLOWED_HOSTS = json.loads(config.get('DEFAULT', 'allowed_hosts'))
+else:
+    ALLOWED_HOSTS = ['.rpguru.com']
 SITE_ID = 1
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
