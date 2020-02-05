@@ -37,10 +37,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATIC_ROOT = os.path.join(FILE_DIR, 'static')
+if 'static_root' in config['DEFAULT']:
+    STATIC_ROOT = config.get('DEFAULT', 'static_root')
+else:
+    STATIC_ROOT = os.path.join(FILE_DIR, 'static')
 
 MEDIA_URL = '/artwork/'
-MEDIA_ROOT = os.path.join(FILE_DIR, 'artwork')
+if 'media_root' in config['DEFAULT']:
+    MEDIA_ROOT = config.get('DEFAULT', 'media_root')
+else:
+    MEDIA_ROOT = os.path.join(FILE_DIR, 'artwork')
 
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o775
 FILE_UPLOAD_PERMISSIONS = 0o664
@@ -227,19 +233,16 @@ LOGGING = {
             'handlers': ['console', 'production', 'debug'],
             'level': 'DEBUG',
         },
-        'django': {
-            'handlers': ['console', 'production', 'debug'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'asyncio': {
-            'handlers': ['console', 'production', 'debug'],
-            'level': 'INFO',
-            'propagate': False,
-        },
         'django.server': DEFAULT_LOGGING['loggers']['django.server'],
     }
 }
+# Silence DEBUG messages from certain modules
+for logger in ['django', 'asyncio', 'PIL']:
+    LOGGING['loggers'][logger] = {
+        'handlers': ['console', 'production', 'debug'],
+        'level': 'INFO',
+        'propagate': False,
+    }
 
 # Sentry
 if 'sentry' in config and config.getboolean('sentry', 'enable', fallback=True):

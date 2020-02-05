@@ -3,10 +3,10 @@
 from django import forms
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
 
-from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin
+from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin, HistoryFormsetViewMixin
 
-from .forms import AttributeForm
-from .models import Game
+from .forms import AttributeForm, PlatformArtworkForm, PlatformArtworkFormset
+from .models import Platform, Game
 
 
 class AttributeMixin:
@@ -42,6 +42,18 @@ class AttributeDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['games'] = Game.cat.filter(**{self.model._meta.model_name: context['object']})
         return context
+
+
+class PlatformArtworkView(PermissionMessageMixin, HistoryFormsetViewMixin, UpdateView):
+    permission_required = 'library.change_platform'
+    template_name = 'library/artwork.html'
+    form_class = PlatformArtworkForm
+    formset_class = PlatformArtworkFormset
+    model = Platform
+
+    def get_success_url(self):
+        # Generate success URL dynamically based on Model name
+        return self.object.get_absolute_url(self.model._meta.model_name + ':artwork')
 
 
 class FrontpageView(TemplateView):

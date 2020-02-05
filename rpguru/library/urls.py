@@ -3,12 +3,13 @@
 from django.urls import path
 
 from library.models import Platform, Franchise, Company, Genre
-from library.views import (AttributeCreateView, AttributeUpdateView, AttributeDetailView)
+from library.views import (AttributeCreateView, AttributeUpdateView, AttributeDetailView, PlatformArtworkView)
 
 
 platform_urls = [
     path('create', AttributeCreateView.as_view(model=Platform), name='create'),
     path('<slug:slug>/edit', AttributeUpdateView.as_view(model=Platform), name='update'),
+    path('<slug:slug>/artwork', PlatformArtworkView.as_view(), name='artwork'),
     path('<slug:slug>', AttributeDetailView.as_view(model=Platform), name='detail'),
 ]
 

@@ -2,12 +2,12 @@
 
 from django import forms
 
-from changerequest.forms import HistoryCommentOptionalMixin
+from changerequest.forms import HistoryCommentOptionalForm
 
 from .models import Platform, PlatformArtwork
 
 
-class AttributeForm(HistoryCommentOptionalMixin, forms.ModelForm):
+class AttributeForm(HistoryCommentOptionalForm, forms.ModelForm):
 
     class Meta:
         fields = ['name', 'slug', 'short', 'description']

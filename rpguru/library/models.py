@@ -28,6 +28,7 @@ class PlatformArtwork(ArtworkModel):
     platform = models.ForeignKey(Platform, on_delete=models.PROTECT)
 
     ARTWORK_FOLDER = 'platform'
+    ARTWORK_SIZES = (150, 300, 600, 900, 1200, 1500, 1800, 2100)
 
     def sub_folder(self):
         return self.platform.pk
@@ -108,6 +109,7 @@ class GameArtwork(ArtworkModel):
     game = models.ForeignKey(Game, on_delete=models.PROTECT)
 
     ARTWORK_FOLDER = 'game'
+    ARTWORK_SIZES = (150, 300, 600, 900, 1200, 1500, 1800, 2100)
 
     def sub_folder(self):
         return self.game.pk
