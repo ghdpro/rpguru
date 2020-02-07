@@ -48,6 +48,14 @@
                         {% if perms.changerequest.view_changerequest %}
                             <a class="dropdown-item" href="{% url 'history:browse' %}"><i class="fas fa-history"></i> Recent Changes</a>
                         {% endif %}
+                        {% if request.user.is_superuser %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'platform:browse' %}">Platforms</a>
+                            <a class="dropdown-item" href="{% url 'franchise:browse' %}">Franchises</a>
+                            <a class="dropdown-item" href="{% url 'company:browse' %}">Companies</a>
+                            <a class="dropdown-item" href="{% url 'genre:browse' %}">Genres</a>
+                            <div class="dropdown-divider"></div>
+                        {% endif %}
                         <a class="dropdown-item" href="https://github.com/ghdpro/rpguru/issues" target="_blank"><i class="fas fa-bug"></i> Site Issues</a>
                     </div>
                 </li>

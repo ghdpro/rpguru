@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load core %}
+
+{% block head_title %}Browse {{ view.model|meta:'verbose_name_plural'|title }}{% endblock head_title %}
+
+{% block meta %}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock meta %}
+
+{% block content %}
+    <div class="d-flex flex-wrap">
+        <h1><span class="text-muted">Browse</span> {{ view.model|meta:'verbose_name_plural'|title }}</h1>
+        <div class="btn-group align-self-center ml-auto">
+            <a href="{% url view.model|meta:'model_name'|concat:':create' %}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-plus fa-fw"></i> Create</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th class="text-nowrap text-center">
+                        <a href="{{ view.get_absolute_url }}{% call_method view 'get_querystring' order='-name' %}" class="text-body">Name</a>
+                        <a href="{{ view.get_absolute_url }}{% call_method view 'get_querystring' order='-name' %}" class="text-body"><i class="fas fa-caret-{% call_method view 'get_order_direction' order='-name' %}"></i></a>
+                    </th>
+                    <th>Slug</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for obj in object_list %}
+                <tr>
+                    <td class="text-nowrap w-75">
+                        {% if obj.get_absolute_url %}
+                            <a href="{{ obj.get_absolute_url }}">{{ obj }}</a>
+                        {% else %}
+                            {{ obj }}
+                        {% endif %}
+                    </td>
+                    <td class="text-nowrap w-25">{{ obj.slug }}</td>
+                    <td class="text-nowrap"><a class="btn btn-outline-secondary btn-sm py-0" href="{% get_absolute_url obj view.model|meta:'model_name'|concat:':update' %}"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a></td>
+                    <td class="text-nowrap"><a class="btn btn-outline-secondary btn-sm py-0" href="{% get_absolute_url obj view.model|meta:'model_name'|concat:':artwork' %}"><i class="fas fa-file-image fa-fw"></i> Artwork</a></td>
+                </tr>
+            {% empty %}
+                <tr><td class="font-italic text-center" colspan="4">None</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  {% if is_paginated %}
+    {% include 'core/_paginator.html' with page_obj=page_obj view=view only %}
+  {% endif %}
+{% endblock content %}

@@ -40,7 +40,7 @@ urlpatterns = [
     path('account/', include(account_patterns)),
     path('history/', include('changerequest.urls')),
     path('platform/', include((platform_urls, 'platform'))),
-    path('franchise/', include((franchise_urls, 'franchise'))),
+    path('series/', include((franchise_urls, 'franchise'))),
     path('company/', include((company_urls, 'company'))),
     path('genre/', include((genre_urls, 'genre'))),
     path('', FrontpageView.as_view(), name='frontpage')

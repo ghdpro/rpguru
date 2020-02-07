@@ -1,9 +1,11 @@
 """RPGuru Library views"""
 
 from django import forms
-from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
+from django.urls import reverse
+from django.views.generic import CreateView, UpdateView, ListView, DetailView, TemplateView
 
-from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin, HistoryFormsetViewMixin
+from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin, HistoryFormsetViewMixin, \
+    ListQueryStringMixin
 from artwork.views import ArtworkActiveMixin
 
 from .forms import AttributeForm, PlatformArtworkForm, PlatformArtworkFormset
@@ -34,6 +36,24 @@ class AttributeUpdateView(PermissionMessageMixin, HistoryFormViewMixin, Attribut
     permission_required = 'library.change_'
     template_name = 'library/update.html'
     form_class = AttributeForm
+
+
+class AttributeListView(PermissionMessageMixin, ListQueryStringMixin, ListView):
+    permission_required = 'library.change_'
+    template_name = 'library/list.html'
+    paginate_by = 25
+    ALLOWED_ORDER = {
+        'DEFAULT': ['name'],  # Also equivalent to 'name'
+        '-name': ['-name']
+    }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set Permission Required dynamically based on Model name
+        self.permission_required += self.model._meta.model_name
+
+    def get_absolute_url(self):
+        return reverse(self.model._meta.model_name + ':browse')
 
 
 class AttributeDetailView(DetailView):
