@@ -4,6 +4,7 @@ from django import forms
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
 
 from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin, HistoryFormsetViewMixin
+from artwork.views import ArtworkActiveMixin
 
 from .forms import AttributeForm, PlatformArtworkForm, PlatformArtworkFormset
 from .models import Platform, Game
@@ -44,7 +45,7 @@ class AttributeDetailView(DetailView):
         return context
 
 
-class PlatformArtworkView(PermissionMessageMixin, HistoryFormsetViewMixin, UpdateView):
+class PlatformArtworkView(PermissionMessageMixin, ArtworkActiveMixin, HistoryFormsetViewMixin, UpdateView):
     permission_required = 'library.change_platform'
     template_name = 'library/artwork.html'
     form_class = PlatformArtworkForm
