@@ -1,0 +1,194 @@
+[
+  {
+    "model": "library.franchise",
+    "pk": 1,
+    "fields": {
+      "name": "Final Fantasy",
+      "slug": "final-fantasy",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 2,
+    "fields": {
+      "name": "Dragon Quest",
+      "slug": "dragon-quest",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 3,
+    "fields": {
+      "name": "Fire Emblem",
+      "slug": "fire-emblem",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 4,
+    "fields": {
+      "name": "Ys",
+      "slug": "ys",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 5,
+    "fields": {
+      "name": "Disgaea",
+      "slug": "disgaea",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 6,
+    "fields": {
+      "name": "Tales",
+      "slug": "tales",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 7,
+    "fields": {
+      "name": "Xeno",
+      "slug": "xeno",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 8,
+    "fields": {
+      "name": "Atelier",
+      "slug": "atelier",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 9,
+    "fields": {
+      "name": "Yakuza",
+      "slug": "yakuza",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 10,
+    "fields": {
+      "name": "Star Ocean",
+      "slug": "star-ocean",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 11,
+    "fields": {
+      "name": "Sakura Wars",
+      "slug": "sakura-wars",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 12,
+    "fields": {
+      "name": "Valkyria Chronicles",
+      "slug": "valkyria-chronicles",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 13,
+    "fields": {
+      "name": "Grandia",
+      "slug": "grandia",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 14,
+    "fields": {
+      "name": "Hyperdimension Neptunia",
+      "slug": "hyperdimension-neptunia",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 15,
+    "fields": {
+      "name": ".hack",
+      "slug": "hack",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.franchise",
+    "pk": 16,
+    "fields": {
+      "name": "Rune Factory",
+      "slug": "rune-factory",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  }
+]

@@ -9,59 +9,84 @@ from artwork.models import ArtworkModel
 from core.models import Language
 
 
-class Platform(HistoryModel):
+class Attribute(HistoryModel):
     name = models.CharField('name', max_length=250)
     slug = models.SlugField(max_length=100, unique=True)
-    short = models.CharField('short name', max_length=100)
     description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self, view=None):
+        if view is None:
+            view = self._meta.model_name + ':detail'
+        return reverse(view, args=[self.slug])
+
+    class Meta:
+        abstract = True
+
+
+class AttributeArtwork(ArtworkModel):
+    IMAGE_MAX_SIZE = None  # Do not alter original image (local override)
+    ARTWORK_SIZES = None
+
+    def get_last_fkey(self):
+        # Returns last foreign key field found (should be reference to "main" model)
+        result = None
+        for field in self._meta.get_fields():
+            if isinstance(field, models.ForeignKey):
+                result = field
+        return result
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.ARTWORK_FOLDER = self.get_last_fkey().name
+
+    def sub_folder(self):
+        return getattr(self, self.get_last_fkey().name + '_id')
+
+    class Meta:
+        abstract = True
+
+
+class Platform(Attribute):
+    short = models.CharField('short name', max_length=100)
     artwork_active = models.ForeignKey('PlatformArtwork', related_name='platform_artwork', on_delete=models.SET_NULL,
                                        null=True, blank=True, default=None)
 
-    def __str__(self):
-        return self.name
 
-    def get_absolute_url(self, view='platform:detail'):
-        return reverse(view, args=[self.slug])
-
-
-class PlatformArtwork(ArtworkModel):
+class PlatformArtwork(AttributeArtwork):
     platform = models.ForeignKey(Platform, on_delete=models.PROTECT)
 
-    ARTWORK_FOLDER = 'platform'
-    ARTWORK_SIZES = (150, 300, 450, 600, 900, 1200, 1500, 1800)
 
-    def sub_folder(self):
-        return self.platform.pk
-
-
-class Franchise(HistoryModel):
-    name = models.CharField('name', max_length=250)
-    slug = models.SlugField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
+class Franchise(Attribute):
+    artwork_active = models.ForeignKey('FranchiseArtwork', related_name='franchise_artwork', on_delete=models.SET_NULL,
+                                       null=True, blank=True, default=None)
 
 
-class Company(HistoryModel):
-    name = models.CharField('name', max_length=250)
-    slug = models.SlugField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
+class FranchiseArtwork(AttributeArtwork):
+    franchise = models.ForeignKey(Franchise, on_delete=models.PROTECT)
 
-    def __str__(self):
-        return self.name
+
+class Company(Attribute):
+    artwork_active = models.ForeignKey('CompanyArtwork', related_name='company_artwork', on_delete=models.SET_NULL,
+                                       null=True, blank=True, default=None)
 
     class Meta:
-        verbose_name_plural = 'Companies'
+        verbose_name_plural = 'companies'
 
 
-class Genre(HistoryModel):
-    name = models.CharField('name', max_length=250)
-    slug = models.SlugField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
+class CompanyArtwork(AttributeArtwork):
+    company = models.ForeignKey(Company, on_delete=models.PROTECT)
 
-    def __str__(self):
-        return self.name
+
+class Genre(Attribute):
+    artwork_active = models.ForeignKey('GenreArtwork', related_name='genre_artwork', on_delete=models.SET_NULL,
+                                       null=True, blank=True, default=None)
+
+
+class GenreArtwork(AttributeArtwork):
+    genre = models.ForeignKey(Genre, on_delete=models.PROTECT)
 
 
 class GameCatalogue(models.Manager):

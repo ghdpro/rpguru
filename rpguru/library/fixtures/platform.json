@@ -1,0 +1,197 @@
+[
+  {
+    "model": "library.platform",
+    "pk": 1,
+    "fields": {
+      "name": "PlayStation 4",
+      "slug": "ps4",
+      "short": "PS4",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 2,
+    "fields": {
+      "name": "Nintendo Switch",
+      "slug": "switch",
+      "short": "Switch",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 3,
+    "fields": {
+      "name": "Xbox One",
+      "slug": "xbox-one",
+      "short": "Xbox One",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 4,
+    "fields": {
+      "name": "PC",
+      "slug": "pc",
+      "short": "PC",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 5,
+    "fields": {
+      "name": "PlayStation",
+      "slug": "psx",
+      "short": "PS1",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 6,
+    "fields": {
+      "name": "PlayStation 2",
+      "slug": "ps2",
+      "short": "PS2",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 7,
+    "fields": {
+      "name": "PlayStation 3",
+      "slug": "ps3",
+      "short": "PS3",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 8,
+    "fields": {
+      "name": "PlayStation Portable",
+      "slug": "psp",
+      "short": "PSP",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 9,
+    "fields": {
+      "name": "PlayStation Vita",
+      "slug": "vita",
+      "short": "Vita",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 10,
+    "fields": {
+      "name": "GameCube",
+      "slug": "gamecube",
+      "short": "GC",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 11,
+    "fields": {
+      "name": "Wii",
+      "slug": "wii",
+      "short": "Wii",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 12,
+    "fields": {
+      "name": "Wii-U",
+      "slug": "wii-u",
+      "short": "Wii-U",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 13,
+    "fields": {
+      "name": "Nintendo DS",
+      "slug": "nds",
+      "short": "DS",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 14,
+    "fields": {
+      "name": "Nintendo 3DS",
+      "slug": "3ds",
+      "short": "3DS",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.platform",
+    "pk": 15,
+    "fields": {
+      "name": "Xbox 360",
+      "slug": "xbox-360",
+      "short": "Xbox 360",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  }
+]

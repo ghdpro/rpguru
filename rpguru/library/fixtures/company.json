@@ -1,0 +1,230 @@
+[
+  {
+    "model": "library.company",
+    "pk": 1,
+    "fields": {
+      "name": "Square Enix",
+      "slug": "square-enix",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 2,
+    "fields": {
+      "name": "Bandai Namco",
+      "slug": "bandai-namco",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 3,
+    "fields": {
+      "name": "Level-5",
+      "slug": "level-5",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 4,
+    "fields": {
+      "name": "Sega",
+      "slug": "sega",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 5,
+    "fields": {
+      "name": "Nintendo",
+      "slug": "nintendo",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 6,
+    "fields": {
+      "name": "Atlus",
+      "slug": "atlus",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 7,
+    "fields": {
+      "name": "Nihon Falcom",
+      "slug": "nihon-falcom",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 8,
+    "fields": {
+      "name": "tri-Ace",
+      "slug": "tri-ace",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 9,
+    "fields": {
+      "name": "PlatinumGames",
+      "slug": "platinumgames",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 10,
+    "fields": {
+      "name": "Monolith Soft",
+      "slug": "monolith-soft",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 11,
+    "fields": {
+      "name": "Capcom",
+      "slug": "capcom",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 12,
+    "fields": {
+      "name": "Konami",
+      "slug": "konami",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 13,
+    "fields": {
+      "name": "Nippon Ichi Software",
+      "slug": "nis",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 14,
+    "fields": {
+      "name": "Koei Tecmo",
+      "slug": "koei-tecmo",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 15,
+    "fields": {
+      "name": "Gust",
+      "slug": "gust",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 16,
+    "fields": {
+      "name": "Game Arts",
+      "slug": "game-arts",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 17,
+    "fields": {
+      "name": "Intelligent Systems",
+      "slug": "intelligent-systems",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 18,
+    "fields": {
+      "name": "Idea Factory",
+      "slug": "idea-factory",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.company",
+    "pk": 19,
+    "fields": {
+      "name": "Compile Heart",
+      "slug": "compile-heart",
+      "artwork_active": null,
+      "description": "",
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  }
+]

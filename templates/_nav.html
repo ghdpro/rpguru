@@ -46,17 +46,17 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-tools"></i><span class="d-md-none d-lg-inline"> Meta</span></a>
                     <div class="dropdown-menu dropdown-menu-right">
                         {% if perms.changerequest.view_changerequest %}
-                            <a class="dropdown-item" href="{% url 'history:browse' %}"><i class="fas fa-history"></i> Recent Changes</a>
+                            <a class="dropdown-item" href="{% url 'history:browse' %}"><i class="fas fa-history fa-fw"></i> Recent Changes</a>
                         {% endif %}
                         {% if request.user.is_superuser %}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'platform:browse' %}">Platforms</a>
-                            <a class="dropdown-item" href="{% url 'franchise:browse' %}">Franchises</a>
-                            <a class="dropdown-item" href="{% url 'company:browse' %}">Companies</a>
-                            <a class="dropdown-item" href="{% url 'genre:browse' %}">Genres</a>
+                            <a class="dropdown-item" href="{% url 'platform:browse' %}"><i class="fas fa-tv fa-fw"></i> Platforms</a>
+                            <a class="dropdown-item" href="{% url 'franchise:browse' %}"><i class="fas fa-sitemap fa-fw"></i> Franchises</a>
+                            <a class="dropdown-item" href="{% url 'company:browse' %}"><i class="fas fa-user-tie fa-fw"></i> Companies</a>
+                            <a class="dropdown-item" href="{% url 'genre:browse' %}"><i class="far fa-folder-open fa-fw"></i> Genres</a>
                             <div class="dropdown-divider"></div>
                         {% endif %}
-                        <a class="dropdown-item" href="https://github.com/ghdpro/rpguru/issues" target="_blank"><i class="fas fa-bug"></i> Site Issues</a>
+                        <a class="dropdown-item" href="https://github.com/ghdpro/rpguru/issues" target="_blank"><i class="fas fa-bug fa-fw"></i> Site Issues</a>
                     </div>
                 </li>
             </ul>

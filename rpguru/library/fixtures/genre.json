@@ -1,0 +1,98 @@
+[
+  {
+    "model": "library.genre",
+    "pk": 1,
+    "fields": {
+      "name": "Action-Adventure",
+      "slug": "action-adventure",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 2,
+    "fields": {
+      "name": "Action",
+      "slug": "action",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 3,
+    "fields": {
+      "name": "Adventure",
+      "slug": "adventure",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 4,
+    "fields": {
+      "name": "Visual Novel",
+      "slug": "visual-novel",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 5,
+    "fields": {
+      "name": "RPG",
+      "slug": "rpg",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 6,
+    "fields": {
+      "name": "Strategy",
+      "slug": "strategy",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 7,
+    "fields": {
+      "name": "Tactical RPG",
+      "slug": "tactical-rpg",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 8,
+    "fields": {
+      "name": "Action RPG",
+      "slug": "action-rpg",
+      "description": "",
+      "artwork_active": null,
+      "date_created": "2020-01-01T00:00:00Z",
+      "date_modified": "2020-01-01T00:00:00Z"
+    }
+  }
+]
