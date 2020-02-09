@@ -38,8 +38,8 @@
                         {% endif %}
                     </td>
                     <td class="text-nowrap w-25">{{ obj.slug }}</td>
-                    <td class="text-nowrap"><a class="btn btn-outline-secondary btn-sm py-0" href="{% get_absolute_url obj view.model|meta:'model_name'|concat:':update' %}"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a></td>
-                    <td class="text-nowrap"><a class="btn btn-outline-secondary btn-sm py-0" href="{% get_absolute_url obj view.model|meta:'model_name'|concat:':artwork' %}"><i class="fas fa-file-image fa-fw"></i> Artwork</a></td>
+                    <td class="text-nowrap"><a class="btn btn-sm btn-outline-secondary py-0" href="{% get_absolute_url obj view.model|meta:'model_name'|concat:':update' %}"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a></td>
+                    <td class="text-nowrap"><a class="btn btn-sm btn-outline-secondary py-0" href="{% get_absolute_url obj view.model|meta:'model_name'|concat:':artwork' %}"><i class="fas fa-file-image fa-fw"></i> Artwork</a></td>
                 </tr>
             {% empty %}
                 <tr><td class="font-italic text-center" colspan="4">None</td></tr>

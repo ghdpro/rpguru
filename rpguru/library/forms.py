@@ -23,8 +23,3 @@ class PlatformForm(HistoryCommentOptionalForm, forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 5}),
         }
-
-
-PlatformArtworkForm = forms.models.modelform_factory(PlatformArtwork, fields=['image'])
-PlatformArtworkFormset = forms.models.inlineformset_factory(Platform, PlatformArtwork, form=PlatformArtworkForm,
-                                                            extra=1, can_delete=True)

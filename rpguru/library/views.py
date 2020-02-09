@@ -8,8 +8,8 @@ from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin, Hi
     ListQueryStringMixin
 from artwork.views import ArtworkActiveMixin
 
-from .forms import AttributeForm, PlatformArtworkForm, PlatformArtworkFormset
-from .models import Platform, Game
+from .forms import AttributeForm
+from .models import Game
 
 
 class AttributeMixin:
@@ -65,12 +65,20 @@ class AttributeDetailView(DetailView):
         return context
 
 
-class PlatformArtworkView(PermissionMessageMixin, ArtworkActiveMixin, HistoryFormsetViewMixin, UpdateView):
-    permission_required = 'library.change_platform'
+class AttributeArtworkView(PermissionMessageMixin, ArtworkActiveMixin, HistoryFormsetViewMixin, UpdateView):
+    permission_required = 'library.change_'
     template_name = 'library/artwork.html'
-    form_class = PlatformArtworkForm
-    formset_class = PlatformArtworkFormset
-    model = Platform
+    artwork = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set Permission Required dynamically based on Model name
+        self.permission_required += self.model._meta.model_name
+        # Create form using Artwork Model
+        self.form_class = forms.models.modelform_factory(self.artwork, fields=['image'])
+        # Create formset
+        self.formset_class = forms.models.inlineformset_factory(self.model, self.artwork, form=self.form_class,
+                                                                extra=1, can_delete=True)
 
     def get_success_url(self):
         # Generate success URL dynamically based on Model name

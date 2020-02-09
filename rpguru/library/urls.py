@@ -3,36 +3,42 @@
 from django.urls import path
 
 from library.forms import PlatformForm
-from library.models import Platform, Franchise, Company, Genre
+from library.models import Platform, PlatformArtwork, Franchise, FranchiseArtwork, \
+    Company, CompanyArtwork, Genre, GenreArtwork
 from library.views import AttributeCreateView, AttributeUpdateView, AttributeListView, AttributeDetailView, \
-    PlatformArtworkView
+    AttributeArtworkView
 
 
-platform_urls = [
-    path('create', AttributeCreateView.as_view(model=Platform, form_class=PlatformForm), name='create'),
-    path('browse', AttributeListView.as_view(model=Platform), name='browse'),
-    path('<slug:slug>/edit', AttributeUpdateView.as_view(model=Platform, form_class=PlatformForm), name='update'),
-    path('<slug:slug>/artwork', PlatformArtworkView.as_view(), name='artwork'),
-    path('<slug:slug>', AttributeDetailView.as_view(model=Platform), name='detail'),
-]
+def generate_urls(model, artwork, form=None) -> list:
+    # :create
+    if form is not None:
+        result = [
+            path('create', AttributeCreateView.as_view(model=model, form_class=form), name='create'),
+        ]
+    else:
+        result = [
+            path('create', AttributeCreateView.as_view(model=model), name='create'),
+        ]
+    # :browse
+    result.append(path('browse', AttributeListView.as_view(model=model), name='browse'))
+    # :update
+    if form is not None:
+        result.append(path('<slug:slug>/edit',
+                           AttributeUpdateView.as_view(model=model, form_class=form), name='update'))
+    else:
+        result.append(path('<slug:slug>/edit',
+                           AttributeUpdateView.as_view(model=model), name='update'))
+    # :artwork
+    result.append(
+        path('<slug:slug>/artwork',
+             AttributeArtworkView.as_view(model=model, artwork=artwork), name='artwork')
+    )
+    # :detail
+    result.append(path('<slug:slug>', AttributeDetailView.as_view(model=model), name='detail'))
+    return result
 
-franchise_urls = [
-    path('create', AttributeCreateView.as_view(model=Franchise), name='create'),
-    path('browse', AttributeListView.as_view(model=Franchise), name='browse'),
-    path('<slug:slug>/edit', AttributeUpdateView.as_view(model=Franchise), name='update'),
-    path('<slug:slug>', AttributeDetailView.as_view(model=Franchise), name='detail'),  # TODO: customize view
-]
 
-company_urls = [
-    path('create', AttributeCreateView.as_view(model=Company), name='create'),
-    path('browse', AttributeListView.as_view(model=Company), name='browse'),
-    path('<slug:slug>/edit', AttributeUpdateView.as_view(model=Company), name='update'),
-    path('<slug:slug>', AttributeDetailView.as_view(model=Company), name='detail'),  # TODO: customize view
-]
-
-genre_urls = [
-    path('create', AttributeCreateView.as_view(model=Genre), name='create'),
-    path('browse', AttributeListView.as_view(model=Genre), name='browse'),
-    path('<slug:slug>/edit', AttributeUpdateView.as_view(model=Genre), name='update'),
-    path('<slug:slug>', AttributeDetailView.as_view(model=Genre), name='detail'),
-]
+platform_urls = generate_urls(Platform, PlatformArtwork, PlatformForm)
+franchise_urls = generate_urls(Franchise, FranchiseArtwork)
+company_urls = generate_urls(Company, CompanyArtwork)
+genre_urls = generate_urls(Genre, GenreArtwork)

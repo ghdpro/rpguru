@@ -90,7 +90,7 @@ class RPGuruUser(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def get_gravatar_url(self, size=80, default='identicon'):
-        url = 'https://www.gravatar.com/avatar/' + md5(self.email.lower().encode('utf-8')).hexdigest()
+        url = 'https://www.gravatar.com/avatar/' + md5(self.email.lower().encode('utf-8')).hexdigest()  # nosec
         url += '?' + urlencode({'d': default, 's': str(size)})
         return url
 
