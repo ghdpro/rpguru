@@ -6,15 +6,34 @@
 {% block content %}
     <div class="d-flex flex-wrap">
         <h1>{{ object.name }}</h1>
+        {% if user.is_superuser %}
         <div class="align-self-center d-block ml-auto">
             <a class="btn btn-sm btn-outline-secondary" href="{% get_absolute_url object view.model|meta:'model_name'|concat:':update' %}"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a>
             <a class="btn btn-sm btn-outline-secondary ml-2" href="{% get_absolute_url object view.model|meta:'model_name'|concat:':artwork' %}"><i class="fas fa-file-image fa-fw"></i> Artwork</a>
         </div>
+        {% endif %}
     </div>
     {{ object.description|markdownify }}
 
-    {% for game in games %}
-        {% include 'library/_game.html' with game=game only %}
-    {% endfor %}
+    {% if view.model|meta:'model_name' == 'franchise' and main|length > 0 and size|length > 0 %}
+        <h3 class="text-center">Main Games</h3>
+        {% for game in main %}
+            {% include 'library/_game.html' with game=game only %}
+        {% endfor %}
+    {% elif view.model|meta:'model_name' == 'company' and developed|length > 0 and published|length > 0 %}
+        <h3 class="text-center">Games developed by {{ company.name }}</h3>
+        {% for game in developed %}
+            {% include 'library/_game.html' with game=game only %}
+        {% endfor %}
 
+        <h3 class="text-center">Games published by {{ company.name }}</h3>
+        {% for game in published %}
+            {% include 'library/_game.html' with game=game only %}
+        {% endfor %}
+        <p class="text-center"><i>To keep the size of this page down, this list doesn't include games where {{ company.name }} was also the developer of the game.</i></p>
+    {% else %}
+        {% for game in games %}
+            {% include 'library/_game.html' with game=game only %}
+        {% endfor %}
+    {% endif %}
 {% endblock content %}

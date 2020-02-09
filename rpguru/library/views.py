@@ -61,7 +61,14 @@ class AttributeDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = Game.cat.filter(**{self.model._meta.model_name: context['object']})
+        if self.model._meta.model_name == 'franchise':
+            context['main'] = Game.cat.filter(franchise_main=context['object'])
+            context['side'] = Game.cat.filter(franchise_side=context['object'])
+        elif self.model._meta.model_name == 'company':
+            context['developed'] = Game.cat.filter(developer=context['object'])
+            context['published'] = Game.cat.filter(publisher=context['object'])
+        else:
+            context['games'] = Game.cat.filter(**{self.model._meta.model_name: context['object']})
         return context
 
 
