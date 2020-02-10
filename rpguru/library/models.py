@@ -91,22 +91,19 @@ class GenreArtwork(AttributeArtwork):
 
 class GameCatalogue(models.Manager):
 
-    def get_queryset(self):
-        return super().get_queryset().select_related('franchise_main', 'franchise_side')\
+    def custom(self):
+        return self.get_queryset().select_related('franchise_main', 'franchise_side')\
             .prefetch_related('audio', 'developer', 'publisher', 'genre', 'platform')\
             .order_by('-na_date', '-jp_date', '-eu_date')
 
 
 class Game(HistoryModel):
-    class Verdict:
+
+    class Verdict(models.IntegerChoices):
         GOOD = 1
         OKAY = 2
         BAD = 3
-        choices = (
-            (GOOD, 'Good'),
-            (OKAY, 'Okay'),
-            (BAD, 'Bad')
-        )
+
     title = models.CharField('title', max_length=250)
     jp_date = models.DateField('Japanese Release Date', null=True, blank=True)
     na_date = models.DateField('North America Release Date', null=True, blank=True)
@@ -124,7 +121,7 @@ class Game(HistoryModel):
     description = models.TextField(blank=True)
     artwork_active = models.ForeignKey('GameArtwork', related_name='game_artwork', on_delete=models.SET_NULL,
                                        null=True, blank=True, default=None)
-    cat = GameCatalogue()
+    objects = GameCatalogue()
 
     def __str__(self):
         return self.title

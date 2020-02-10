@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load core history %}
+
+{% block head_title %}{{ object.title }} Artwork{% endblock head_title %}
+
+{% block content %}
+    <h1>{{ object.title }} <span class="text-muted">Artwork</span></h1>
+    <form action="{% url 'game:artwork' pk=object.pk%}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {% include 'artwork/_formset.html' with formset=form object=object comment_form=comment_form only %}
+	    <div class="form-group row">
+		    <div class="col-sm-2"></div>
+		    <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save fa-fw"></i> Save</button>
+                <a href="{% url 'game:update' pk=object.pk%}" class="btn btn-outline-secondary ml-2"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a>
+            </div>
+        </div>
+    </form>
+    {% history_related object form.model %}
+{% endblock content %}

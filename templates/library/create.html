@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load core %}
 
-{% block head_title %}Create {{ view.model|meta:'object_name' }}{% endblock head_title %}
+{% block head_title %}Add {{ view.model|meta:'object_name' }}{% endblock head_title %}
 
 {% block content %}
-    {% block content_title %}<h1><span class="text-muted">Create</span> {{ view.model|meta:'object_name' }}</h1>{% endblock content_title %}
+    {% block content_title %}<h1><span class="text-muted">Add</span> {{ view.model|meta:'object_name' }}</h1>{% endblock content_title %}
     <form action="{% block form_url %}{% url view.model|meta:'model_name'|concat:':create' %}{% endblock form_url %}" method="post">
         {% csrf_token %}
         {% include 'core/forms/_head.html' with form=form only %}

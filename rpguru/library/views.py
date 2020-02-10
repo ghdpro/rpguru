@@ -8,7 +8,7 @@ from changerequest.views import PermissionMessageMixin, HistoryFormViewMixin, Hi
     ListQueryStringMixin
 from artwork.views import ArtworkActiveMixin
 
-from .forms import AttributeForm
+from .forms import AttributeForm, GameForm, GameArtworkForm, GameArtworkFormset
 from .models import Game
 
 
@@ -62,13 +62,14 @@ class AttributeDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.model._meta.model_name == 'franchise':
-            context['main'] = Game.cat.filter(franchise_main=context['object'])
-            context['side'] = Game.cat.filter(franchise_side=context['object'])
+            context['main'] = Game.objects.custom().filter(franchise_main=context['object'])
+            context['side'] = Game.objects.custom().filter(franchise_side=context['object'])
         elif self.model._meta.model_name == 'company':
-            context['developed'] = Game.cat.filter(developer=context['object'])
-            context['published'] = Game.cat.filter(publisher=context['object'])
+            context['developed'] = Game.objects.custom().filter(developer=context['object'])
+            context['published'] = Game.objects.custom().filter(publisher=context['object'])\
+                .exclude(developer=context['object'])
         else:
-            context['games'] = Game.cat.filter(**{self.model._meta.model_name: context['object']})
+            context['games'] = Game.objects.custom().filter(**{self.model._meta.model_name: context['object']})
         return context
 
 
@@ -92,5 +93,41 @@ class AttributeArtworkView(PermissionMessageMixin, ArtworkActiveMixin, HistoryFo
         return self.object.get_absolute_url(self.model._meta.model_name + ':artwork')
 
 
+class GameCreateView(PermissionMessageMixin, HistoryFormViewMixin, CreateView):
+    permission_required = 'library.add_game'
+    template_name = 'library/game/create.html'
+    form_class = GameForm
+    model = Game
+
+    def get_success_url(self):
+        return reverse('game:update', kwargs={'pk': self.object.pk})
+
+
+class GameUpdateView(PermissionMessageMixin, HistoryFormViewMixin, UpdateView):
+    permission_required = 'library.change_game'
+    template_name = 'library/game/update.html'
+    form_class = GameForm
+    model = Game
+
+    def get_success_url(self):
+        return reverse('game:update', kwargs={'pk': self.object.pk})
+
+
+class GameArtworkView(PermissionMessageMixin, ArtworkActiveMixin, HistoryFormsetViewMixin, UpdateView):
+    permission_required = 'library.add_gameartwork'
+    template_name = 'library/game/artwork.html'
+    form_class = GameArtworkForm
+    formset_class = GameArtworkFormset
+    model = Game
+
+    def get_success_url(self):
+        return reverse('game:artwork', kwargs={'pk': self.object.pk})
+
+
 class FrontpageView(TemplateView):
     template_name = 'frontpage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['games'] = Game.objects.custom().all()[0:5]
+        return context

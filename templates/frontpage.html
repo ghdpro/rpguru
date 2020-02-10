@@ -19,7 +19,7 @@
 
     <h2 class="text-center">Latest Games</h2>
     {% for game in games %}
-        {% include 'library/_game.html' with game=game only %}
+        {% include 'library/_game.html' with game=game perms=perms only %}
     {% endfor %}
 
 {% endblock content %}

@@ -15,25 +15,38 @@
     </div>
     {{ object.description|markdownify }}
 
-    {% if view.model|meta:'model_name' == 'franchise' and main|length > 0 and size|length > 0 %}
-        <h3 class="text-center">Main Games</h3>
-        {% for game in main %}
-            {% include 'library/_game.html' with game=game only %}
-        {% endfor %}
-    {% elif view.model|meta:'model_name' == 'company' and developed|length > 0 and published|length > 0 %}
-        <h3 class="text-center">Games developed by {{ company.name }}</h3>
-        {% for game in developed %}
-            {% include 'library/_game.html' with game=game only %}
-        {% endfor %}
+    {% if view.model|meta:'model_name' == 'franchise' and main|length > 0 or side|length > 0 %}
+        {% if main|length > 0 %}
+            <h3 class="text-center">Main Games</h3>
+            {% for game in main %}
+                {% include 'library/_game.html' with game=game perms=perms only %}
+            {% endfor %}
+        {% endif %}
 
-        <h3 class="text-center">Games published by {{ company.name }}</h3>
-        {% for game in published %}
-            {% include 'library/_game.html' with game=game only %}
-        {% endfor %}
-        <p class="text-center"><i>To keep the size of this page down, this list doesn't include games where {{ company.name }} was also the developer of the game.</i></p>
+        {% if side|length > 0 %}
+            <h3 class="text-center">Side Games</h3>
+            {% for game in side%}
+                {% include 'library/_game.html' with game=game perms=perms only %}
+            {% endfor %}
+        {% endif %}
+    {% elif view.model|meta:'model_name' == 'company' and developed|length > 0 or published|length > 0 %}
+        {% if developed|length > 0 %}
+            <h3 class="text-center">Games developed by {{ company.name }}</h3>
+            {% for game in developed %}
+                {% include 'library/_game.html' with game=game perms=perms only %}
+            {% endfor %}
+        {% endif %}
+
+        {% if published|length > 0 %}
+            <h3 class="text-center">Games published by {{ company.name }}</h3>
+            {% for game in published %}
+                {% include 'library/_game.html' with game=game perms=perms only %}
+            {% endfor %}
+            <p class="text-center"><i>To keep the size of this page down, this section doesn't include games where {{ company.name }} was also the developer of the game.</i></p>
+        {% endif %}
     {% else %}
         {% for game in games %}
-            {% include 'library/_game.html' with game=game only %}
+            {% include 'library/_game.html' with game=game perms=perms only %}
         {% endfor %}
     {% endif %}
 {% endblock content %}

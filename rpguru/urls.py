@@ -9,7 +9,7 @@ from django.contrib import admin
 
 from allauth.account import views as account
 
-from library.urls import platform_urls, franchise_urls, company_urls, genre_urls
+from library.urls import platform_urls, franchise_urls, company_urls, genre_urls, game_urls
 from library.views import FrontpageView
 
 
@@ -43,6 +43,7 @@ urlpatterns = [
     path('series/', include((franchise_urls, 'franchise'))),
     path('company/', include((company_urls, 'company'))),
     path('genre/', include((genre_urls, 'genre'))),
+    path('game/', include((game_urls, 'game'))),
     path('', FrontpageView.as_view(), name='frontpage')
 ]
 
