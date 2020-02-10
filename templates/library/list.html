@@ -47,7 +47,7 @@
             </tbody>
         </table>
     </div>
-  {% if is_paginated %}
-    {% include 'core/_paginator.html' with page_obj=page_obj view=view only %}
-  {% endif %}
+    {% if is_paginated %}
+        {% include 'core/_paginator.html' with page_obj=page_obj view=view only %}
+    {% endif %}
 {% endblock content %}

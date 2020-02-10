@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load core %}
+
+{% block head_title %}Search for &apos;{{ search }}&apos;{% endblock %}
+
+{% block content %}
+    <h1>Search for &apos;{{ search }}&apos;</h1>
+
+    {% for game in object_list %}
+        {% include 'library/_game.html' with game=game perms=perms only %}
+    {% empty %}
+        <p class="text-center"><i>Your search for &apos;{{ search }}&apos; did not yield any results.</i></p>
+    {% endfor %}
+
+    {% if is_paginated %}
+        {% include 'core/_paginator.html' with page_obj=page_obj view=view only %}
+    {% endif %}
+{% endblock content %}

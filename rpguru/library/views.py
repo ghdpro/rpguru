@@ -1,6 +1,8 @@
 """RPGuru Library views"""
 
 from django import forms
+from django.db.models import Q
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, TemplateView
 
@@ -122,6 +124,33 @@ class GameArtworkView(PermissionMessageMixin, ArtworkActiveMixin, HistoryFormset
 
     def get_success_url(self):
         return reverse('game:artwork', kwargs={'pk': self.object.pk})
+
+
+class SearchView(ListQueryStringMixin, ListView):
+    template_name = 'library/search.html'
+    paginate_by = 10
+    model = Game
+    queryset = Game.objects.custom()
+
+    def get(self, request, *args, **kwargs):
+        # If searching for empty string, redirect to Frontpage instead
+        search = self.request.GET.get('q', '').strip()
+        if len(search) == 0:
+            return redirect('frontpage')
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        search = self.request.GET.get('q', '').strip()
+        qs = qs.filter(Q(title__icontains=search) |
+                       Q(developer__name__icontains=search) |
+                       Q(publisher__name__icontains=search))
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('q', '').strip()
+        return context
 
 
 class FrontpageView(TemplateView):

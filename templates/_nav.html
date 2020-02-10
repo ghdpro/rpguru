@@ -63,15 +63,15 @@
                     </div>
                 </li>
             </ul>
-            <form action="" method="get" class="form-inline my-2 my-lg-0 ml-lg-3">
+            <form action="{% url 'search' %}" method="get" class="form-inline my-2 my-lg-0 ml-lg-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="search" name="q"{% if search %} value="{{ search }}"{% endif %} placeholder="Search" aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-dark" type="submit"><span class="fas fa-search"></span></button>
                     </div>
                 </div>
             </form>
-            <ul class="navbar-nav d-none d-lg-block">
+            <ul class="navbar-nav ml-md-3 d-none d-lg-block">
                 <li class="nav-item dropdown">
                     <a class="navbar-brand d-flex align-items-center mr-0" href="{% if request.user.is_authenticated %}{% url 'account_profile' %}{% else %}{% url 'account_login' %}{% endif %}" data-toggle="dropdown">
                         <img src="{% if request.user.is_authenticated %}{{ request.user.get_gravatar_url }}{% else %}https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;f=y{% endif %}" width="30" height="30" class="rounded" alt="{% if request.user.is_authenticated %}{{ request.user.username }}{% else %}Avatar{% endif %}">
