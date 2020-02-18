@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',  # Required for django-allauth
+    'django.contrib.sitemaps',
     'allauth',
     'allauth.account',
     'markdownify',

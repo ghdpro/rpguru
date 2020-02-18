@@ -24,13 +24,13 @@
             <div class="card-body">
                 <ul class="list-group list-group-horizontal-lg rpguru-data">
                     <li class="list-group-item flex-fill text-white bg-dark py-1 px-2" data-toggle="tooltip" data-placement="left" title="Japanese Release Date">
-                        <span class="flag-icon flag-icon-jp"></span> <span class="text-nowrap">{{ game.jp_date }}</span>
+                        <span class="flag-icon flag-icon-jp"></span> <span class="text-nowrap">{% if game.jp_date %}{{ game.jp_date }}{% else %} ? {% endif %}</span>
                     </li>
                     <li class="list-group-item flex-fill text-white bg-dark py-1 px-2" data-toggle="tooltip" data-placement="left" title="North American Release Date">
-                        <span class="flag-icon flag-icon-us"></span> <span class="text-nowrap">{{ game.na_date }}</span>
+                        <span class="flag-icon flag-icon-us"></span> <span class="text-nowrap">{% if game.na_date %}{{ game.na_date }}{% else %} ? {% endif %}</span>
                     </li>
                     <li class="list-group-item flex-fill text-white bg-dark py-1 px-2" data-toggle="tooltip" data-placement="left" title="European Release Date">
-                        <span class="flag-icon flag-icon-eu"></span> <span class="text-nowrap">{{ game.eu_date }}</span>
+                        <span class="flag-icon flag-icon-eu"></span> <span class="text-nowrap">{% if game.eu_date %}{{ game.eu_date }}{% else %} ? {% endif %}</span>
                     </li>
                     <li class="list-group-item flex-fill text-white bg-dark py-1 px-2" data-toggle="tooltip" data-placement="left" title="Platform">
                         {% for platform in game.platform.all %}<a href="{% url 'platform:detail' platform.slug %}">{{ platform.short }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
@@ -40,9 +40,11 @@
                     <li class="list-group-item flex-fill text-white bg-dark py-1 px-2" data-toggle="tooltip" data-placement="left" title="Voice Languages">
                         <i class="fas fa-microphone"></i> {% for audio in game.audio.all %}{{ audio.pk|upper }}{% if not forloop.last %}, {% endif %}{% endfor %}
                     </li>
+                    {% if game.franchise_main or game.franchise_side %}
                     <li class="list-group-item flex-fill text-white bg-dark  py-1 px-2" data-toggle="tooltip" data-placement="left" title="Franchise">
                         {% if game.franchise_main %}<a href="{% url 'franchise:detail' game.franchise_main.slug %}" class="text-nowrap">{{ game.franchise_main.name }}</a>{% else %}{{ game.franchise_side.name }}{% endif %}
                     </li>
+                    {% endif %}
                     <li class="list-group-item flex-fill text-white bg-dark py-1 px-2" data-toggle="tooltip" data-placement="left" title="Genre">
                         {% for genre in game.genre.all %}<a href="{% url 'genre:detail' genre.slug %}">{{ genre.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
                     </li>

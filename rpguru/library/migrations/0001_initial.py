@@ -59,9 +59,6 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            managers=[
-                ('cat', django.db.models.manager.Manager()),
-            ],
         ),
         migrations.CreateModel(
             name='Genre',

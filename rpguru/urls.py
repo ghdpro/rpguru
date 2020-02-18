@@ -6,11 +6,13 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 
 from allauth.account import views as account
 
 from library.urls import platform_urls, franchise_urls, company_urls, genre_urls, game_urls
 from library.views import SearchView, FrontpageView
+from library.sitemap import sitemaps
 
 
 # URLs for django-allauth/account have been redefined here to remove the ending slash
@@ -45,6 +47,7 @@ urlpatterns = [
     path('genre/', include((genre_urls, 'genre'))),
     path('game/', include((game_urls, 'game'))),
     path('search', SearchView.as_view(), name='search'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('', FrontpageView.as_view(), name='frontpage')
 ]
 
