@@ -147,6 +147,7 @@ AUTHENTICATION_BACKENDS = (
 )
 LOGIN_URL = '/account/login'
 LOGIN_REDIRECT_URL = '/account/profile'
+ACCOUNT_ADAPTER = 'core.adapter.RPGuruAccountAdapter'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 if 'auth' in config and 'account_email_verification' in config['auth']:

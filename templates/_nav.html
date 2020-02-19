@@ -71,6 +71,7 @@
                     </div>
                 </div>
             </form>
+{% if request.user.is_authenticated %}
             <ul class="navbar-nav ml-md-3 d-none d-lg-block">
                 <li class="nav-item dropdown">
                     <a class="navbar-brand d-flex align-items-center mr-0" href="{% if request.user.is_authenticated %}{% url 'account_profile' %}{% else %}{% url 'account_login' %}{% endif %}" data-toggle="dropdown">
@@ -87,6 +88,7 @@
                     </div>
                 </li>
             </ul>
+{% endif %}
         </div>
     </div>
 </nav>
