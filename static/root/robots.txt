@@ -1,0 +1,12 @@
+User-Agent: *
+Allow: /platform
+Allow: /series
+Allow: /company
+Allow: /genre
+Disallow: /account
+Disallow: /admin
+Disallow: /game
+Disallow: /history
+Disallow: /search
+
+Sitemap: https://rpguru.com/sitemap.xml

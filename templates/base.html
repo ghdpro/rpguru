@@ -18,15 +18,14 @@
     {% endblock %}
     <title>{% block head_title %}RPGuru{% endblock head_title %}</title>
     {% block meta %}{% endblock meta %}
-    {# include 'analytics.html' #}
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% include 'analytics.html' %}
 </head>
 <body>
 
 {% include '_nav.html' %}
 
 <main class="container">
-    <div class="alert alert-warning"><b>Note!</b> This site is still under construction. Consider the content of various pages not yet final.</div>
-
     {% for message in messages %}
         <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
     {% endfor %}
@@ -36,7 +35,7 @@
 </main>
 
 <footer class="container text-center mb-3">
-    <small>Copyright &copy; {% now "Y" %} RPGuru.com - {# include 'id.html' #}</small><br />
+    <small>Copyright &copy; {% now "Y" %} RPGuru.com - {% include 'id.html' %}</small><br />
     <small>This website is not affiliated with any video game company. All trademarks are owned by their respective holders.</small>
 </footer>
 
