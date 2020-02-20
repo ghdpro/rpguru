@@ -1,0 +1,10 @@
+[run]
+source = rpguru
+omit = *migrations*
+branch = True
+
+[report]
+exclude_lines =
+    pragma: no cover
+skip_covered = True
+show_missing = True

@@ -1,6 +1,9 @@
 # Python
 *.pyc
 
+# Coverage
+.coverage
+
 # JetBrains
 .idea
 
