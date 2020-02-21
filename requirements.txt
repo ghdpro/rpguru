@@ -3,6 +3,8 @@ django-debug-toolbar==2.2
 django-allauth==0.41.0
 django-markdownify==0.8.0
 django-redis==4.11.0
+django-csp==3.6
+django-feature-policy==3.2.0
 -e git://github.com/ghdpro/django-changerequest#egg=django-changerequest
 -e git://github.com/ghdpro/django-artwork#egg=django-artwork
 psycopg2-binary==2.8.4

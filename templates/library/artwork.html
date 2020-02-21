@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
-{% load core history %}
+{% load static core history %}
 
 {% block head_title %}{{ object.name }} Artwork{% endblock head_title %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'artwork/artwork.css' %}?20200221">
+{% endblock head %}
 
 {% block content %}
     <h1>{{ object.name }} <span class="text-muted">Artwork</span></h1>
