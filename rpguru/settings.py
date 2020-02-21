@@ -27,6 +27,17 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Security
+if not DEBUG:  # Skip SSL for local development
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_PRELOAD = True
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+
 if 'email' in config:
     if 'default_from_email' in config['email']:
         DEFAULT_FROM_EMAIL = config.get('email', 'default_from_email')

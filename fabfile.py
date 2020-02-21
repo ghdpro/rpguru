@@ -111,7 +111,7 @@ def _migrate(c, rev):
         c.run(f'python3 manage.py test --keepdb', echo=True)
         # Run check
         logger.info('Running check....')
-        c.run(f'python3 manage.py check', echo=True)
+        c.run(f'python3 manage.py check --deploy', echo=True)
 
 
 def _update_symlinks(c, rev):
