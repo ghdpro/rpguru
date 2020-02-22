@@ -1,11 +1,31 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block meta %}
+    {% with desc="This site is about Japanese games (as the name implies, mostly RPGs) and whether or not they retained the Japanese voice track when they were localized and released in North America and Europe" %}
+    <meta name="description" content="{{ desc }}" />
+    <meta property="og:title" content="RPGuru: Dual Audio Games" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %}" />
+    <meta property="og:description" content="{{ desc }}" />
+    <meta property="og:site_name" content="RPGuru" />
+    <meta property="article:published_time" content="2020-01-01T00:00:00+00:00" />
+    <meta property="article:modified_time" content="{{ first.date_modified|date:'c' }}" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="RPGuru: Dual Audio Games">
+    <meta property="twitter:description" content="{{ desc }}" />
+    <meta property="twitter:image:src" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %}" />
+    {% endwith %}
+{% endblock meta %}
 
 {% block content %}
     <h1>Welcome to RPGuru</h1>
     <p>
         This site is about Japanese games (as the name implies, mostly RPGs) and whether or not they retained the
         Japanese voice track when they were localized and released in North America and Europe.
-        There are some that may find it odd, yet some people simply prefer playing games with the original voice track.
+        There are some that may find it odd, yet some people simply prefer playing games in English
+        while listening to the original Japanese voice acting.
     </p>
     <p>
         To be able to see which games properly support dual audio or not,

@@ -63,15 +63,26 @@ class AttributeDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # The 'first' game context data is used for Social Meta cards in case main object doesn't have an image
         if self.model._meta.model_name == 'franchise':
             context['main'] = Game.objects.custom().filter(franchise_main=context['object'])
             context['side'] = Game.objects.custom().filter(franchise_side=context['object'])
+            if len(context['main']) > 0:
+                context['first'] = context['main'][0]
+            elif len(context['side']) > 0:
+                context['first'] = context['side'][0]
         elif self.model._meta.model_name == 'company':
             context['developed'] = Game.objects.custom().filter(developer=context['object'])
             context['published'] = Game.objects.custom().filter(publisher=context['object'])\
                 .exclude(developer=context['object'])
+            if len(context['developed']) > 0:
+                context['first'] = context['developed'][0]
+            elif len(context['published']) > 0:
+                context['first'] = context['published'][0]
         else:
             context['games'] = Game.objects.custom().filter(**{self.model._meta.model_name: context['object']})
+            if len(context['games']) > 0:
+                context['first'] = context['games'][0]
         return context
 
 
@@ -159,4 +170,6 @@ class FrontpageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['games'] = Game.objects.custom().all()[0:5]
+        if len(context['games']) > 0:
+            context['first'] = context['games'][0]
         return context
