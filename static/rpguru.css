@@ -50,3 +50,27 @@ main.container a:not(.btn) {
 main.container a:not(.btn):hover {
     text-decoration: none;
 }
+
+@media screen and (max-width: 767.98px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 800px) {
+    /* Fix for regular iPads in Portrait Mode (768px width), while not altering anything for iPad Pro 10.5 */
+    .navbar .form-control {
+        width: 150px;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+}
