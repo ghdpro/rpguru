@@ -39,42 +39,6 @@ if not DEBUG:  # Skip SSL for local development
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
-# Content-Security-Policy
-CSP_DEFAULT_SRC = ("'none'", )
-CSP_IMG_SRC = ("'self'",
-               'https://cdnjs.cloudflare.com',
-               'https://www.gravatar.com',
-               'https://www.google-analytics.com')
-CSP_STYLE_SRC = ("'self'",
-                 'https://cdnjs.cloudflare.com',
-                 'https://stackpath.bootstrapcdn.com',
-                 'https://fonts.googleapis.com',
-                 'https://use.fontawesome.com')
-CSP_FONT_SRC = ('https://fonts.gstatic.com',
-                'https://use.fontawesome.com')
-CSP_SCRIPT_SRC = ("'self'",
-                  'https://cdn.jsdelivr.net',
-                  'https://code.jquery.com',
-                  'https://stackpath.bootstrapcdn.com',
-                  'https://www.google-analytics.com',
-                  'https://ssl.google-analytics.com',
-                  'https://www.googletagmanager.com')
-CSP_INCLUDE_NONCE_IN = ('script-src', )
-CSP_CONNECT_SRC = ('https://www.google-analytics.com', )
-if 'sentry' in config and config.getboolean('sentry', 'enable', fallback=True):
-    CSP_REPORT_URI = config.get('sentry', 'csp-report-uri', fallback=None)
-# For testing, run CSP in report-only mode for now
-CSP_REPORT_ONLY = True
-
-# Feature Policy
-FEATURE_POLICY = {
-    'autoplay': 'none',
-    'camera': 'none',
-    'fullscreen': 'none',
-    'geolocation': 'none',
-    'microphone': 'none'
-}
-
 if 'email' in config:
     if 'default_from_email' in config['email']:
         DEFAULT_FROM_EMAIL = config.get('email', 'default_from_email')
@@ -119,8 +83,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'csp.middleware.CSPMiddleware',
-    'django_feature_policy.FeaturePolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
