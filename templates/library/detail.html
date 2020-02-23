@@ -55,7 +55,12 @@
         </div>
         {% endif %}
     </div>
-    {{ object.description|markdownify }}
+    <div class="clearfix pb-3">
+        {% if object.artwork_active %}
+            <img src="{{ object.artwork_active.image.url }}" class="rpguru-attr-img float-right" alt="{{ object.name }}" />
+        {% endif %}
+        <p>{{ object.description|markdownify }}</p>
+    </div>
 
     {% if view.model|meta:'model_name' == 'franchise' and main|length > 0 or side|length > 0 %}
         {% if main|length > 0 %}

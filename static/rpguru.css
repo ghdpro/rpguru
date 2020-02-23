@@ -17,6 +17,12 @@ h1, h2, h3, h4, h5 {
     object-fit: cover;
 }
 
+.rpguru-attr-img {
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: cover;
+}
+
 .verdict-good {
     color: #28A745;
 }
@@ -55,6 +61,12 @@ main.container a:not(.btn):hover {
     .navbar {
         padding: 0.5rem 1rem;
     }
+
+    .rpguru-attr-img {
+        max-width: 50vw;
+        max-height: 50vw;
+    }
+
 }
 
 @media screen and (max-width: 991.98px) {
