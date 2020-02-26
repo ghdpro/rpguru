@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load core %}
+{% load toolkit %}
 
 {% block head_title %}Add {{ view.model|meta:'object_name' }}{% endblock head_title %}
 
@@ -7,19 +7,19 @@
     {% block content_title %}<h1><span class="text-muted">Add</span> {{ view.model|meta:'object_name' }}</h1>{% endblock content_title %}
     <form action="{% block form_url %}{% url view.model|meta:'model_name'|concat:':create' %}{% endblock form_url %}" method="post">
         {% csrf_token %}
-        {% include 'core/forms/_head.html' with form=form only %}
+        {% include 'toolkit/forms/head.html' with form=form only %}
         {% for field in form.visible_fields %}
             {% if form.short %}
                 {% if field == form.name %}
-                    {% include 'core/forms/_row.html' with fields=form|subset:'name,slug,short' label='Name / Slug / Short' label_css='col-sm-2' field_css='col-sm-3,col-sm-4,col-sm-3' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'name,slug,short' label='Name / Slug / Short' label_css='col-sm-2' field_css='col-sm-3,col-sm-4,col-sm-3' only %}
                 {% elif field not in form|subset:'name,slug,short' %}
-                    {% include 'core/forms/_field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
+                    {% include 'toolkit/forms/field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
                 {% endif %}
             {% else %}
                 {% if field == form.name %}
-                    {% include 'core/forms/_row.html' with fields=form|subset:'name,slug' label='Name / Slug' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'name,slug' label='Name / Slug' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
                 {% elif field not in form|subset:'name,slug' %}
-                    {% include 'core/forms/_field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
+                    {% include 'toolkit/forms/field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
                 {% endif %}
             {% endif %}
         {% endfor %}

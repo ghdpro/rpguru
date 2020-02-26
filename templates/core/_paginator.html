@@ -1,4 +1,4 @@
-{% load core %}
+{% load toolkit %}
 <ul class="pagination pagination-sm justify-content-center">
 {% if page_obj.has_previous %}
     <li class="page-item"><a href="{{ view.get_absolute_url }}{% call_method view 'get_querystring' page=page_obj.previous_page_number %}" class="page-link"><i class="fas fa-chevron-left fa-fw"></i></a></li>

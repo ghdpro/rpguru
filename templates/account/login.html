@@ -11,9 +11,9 @@
 
     <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
-        {% include 'core/forms/_head.html' with form=form only %}
+        {% include 'toolkit/forms/head.html' with form=form only %}
         {% for field in form.visible_fields %}
-            {% include 'core/forms/_field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-6' only %}
+            {% include 'toolkit/forms/field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-6' only %}
         {% endfor %}
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
