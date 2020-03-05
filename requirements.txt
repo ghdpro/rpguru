@@ -1,4 +1,4 @@
-Django[argon2]==3.0.3
+Django[argon2]==3.0.4
 django-debug-toolbar==2.2
 django-allauth==0.41.0
 django-markdownify==0.8.0
@@ -9,5 +9,5 @@ django-feature-policy==3.2.0
 -e git://github.com/ghdpro/django-artwork#egg=django-artwork
 django-template-toolkit==0.1.1
 psycopg2-binary==2.8.4
-sentry-sdk==0.14.1
+sentry-sdk==0.14.2
 fabric==2.5.0
