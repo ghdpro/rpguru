@@ -1,0 +1,83 @@
+
+@import '../node_modules/bootswatch/dist/solar/variables';
+@import 'variables';
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/bootswatch/dist/solar/bootswatch';
+
+.rpguru-data {
+    font-size: 95%;
+}
+
+.rpguru-img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.rpguru-attr-img {
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.verdict-good {
+    color: #28A745;
+}
+.verdict-okay {
+    color: #FD7E14;
+}
+.verdict-bad {
+    color: #DC3545;
+}
+
+.navbar {
+    padding: .2rem;
+}
+.nav-link {
+    font-weight: 600;
+}
+
+main.container {
+    padding: .5rem 1rem;
+    margin-top: 1rem;
+}
+
+main.container a:not(.btn):not(.rpguru-data) {
+    font-weight: 600;
+}
+
+main.container a:not(.btn) {
+    text-decoration: underline;
+}
+
+main.container a:not(.btn):hover {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767.98px) {
+    .navbar {
+        padding: .5rem 1rem;
+    }
+
+    .rpguru-attr-img {
+        max-width: 50vw;
+        max-height: 50vw;
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 800px) {
+    /* Fix for regular iPads in Portrait Mode (768px width), while not altering anything for iPad Pro 10.5 */
+    .navbar .form-control {
+        width: 150px;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+}
