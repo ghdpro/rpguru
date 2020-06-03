@@ -1,6 +1,9 @@
 # Python
 *.pyc
 
+# Node
+node_modules
+
 # Coverage
 .coverage
 
