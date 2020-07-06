@@ -3,6 +3,7 @@
 import django.contrib.auth.models
 import django.contrib.auth.validators
 import django.contrib.postgres.fields.citext
+from django.contrib.postgres.operations import CITextExtension
 from django.db import migrations, models
 import django.utils.timezone
 
@@ -16,6 +17,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        CITextExtension(),  # Install PostgreSQL CIText extension first
         migrations.CreateModel(
             name='Language',
             fields=[
