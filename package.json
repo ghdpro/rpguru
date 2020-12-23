@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "bootstrap": "4.*",
-    "bootswatch": "4.*",
+    "bootstrap": "^4.5.3",
+    "bootswatch": "^4.5.3",
     "jquery": "3.*",
     "popper.js": "1.*"
   },
