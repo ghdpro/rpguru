@@ -124,6 +124,7 @@ DATABASES = {
         }
     }
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 if 'cache' in config and 'redis' in config['cache']:
     CACHES = {
