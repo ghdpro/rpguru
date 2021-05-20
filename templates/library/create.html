@@ -11,19 +11,19 @@
         {% for field in form.visible_fields %}
             {% if form.short %}
                 {% if field == form.name %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'name,slug,short' label='Name / Slug / Short' label_css='col-sm-2' field_css='col-sm-3,col-sm-4,col-sm-3' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'name,slug,short' row_css='row mb-3' label='Name / Slug / Short' label_css='col-sm-2' field_css='col-sm-3,col-sm-4,col-sm-3' only %}
                 {% elif field not in form|subset:'name,slug,short' %}
-                    {% include 'toolkit/forms/field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
+                    {% include 'toolkit/forms/field.html' with field=field row_css='row mb-3' label_css='col-sm-2' field_css='col-sm-10' only %}
                 {% endif %}
             {% else %}
                 {% if field == form.name %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'name,slug' label='Name / Slug' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'name,slug' row_css='row mb-3' label='Name / Slug' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
                 {% elif field not in form|subset:'name,slug' %}
-                    {% include 'toolkit/forms/field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
+                    {% include 'toolkit/forms/field.html' with field=field row_css='row mb-3' label_css='col-sm-2' field_css='col-sm-10' only %}
                 {% endif %}
             {% endif %}
         {% endfor %}
-	    <div class="form-group row">
+	    <div class="row">
 		    <div class="col-sm-2"></div>
 		    <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save fa-fw"></i> Save</button>

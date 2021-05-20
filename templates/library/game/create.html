@@ -11,23 +11,23 @@
         {% for field in form.visible_fields %}
             {% if field in form|subset:'title,jp_date,na_date,eu_date,audio,franchise_main,franchise_side,platform,developer,publisher,genre,verdict,description' %}
                 {% if field == form.title %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'title,verdict' label='Title / Verdict' label_css='col-sm-2' field_css='col-sm-8,col-sm-2' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'title,verdict' row_css='row mb-3' label='Title / Verdict' label_css='col-sm-2' field_css='col-sm-8,col-sm-2' only %}
                 {% elif field == form.jp_date %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'jp_date,na_date,eu_date' label='JP / NA / EU date' label_css='col-sm-2' field_css='col-sm-3,col-sm-4,col-sm-3' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'jp_date,na_date,eu_date' row_css='row mb-3' label='JP / NA / EU date' label_css='col-sm-2' field_css='col-sm-3,col-sm-4,col-sm-3' only %}
                 {% elif field == form.franchise_main %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'franchise_main,franchise_side' label='Franchise Main / Side' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'franchise_main,franchise_side' row_css='row mb-3' label='Franchise Main / Side' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
                 {% elif field == form.platform %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'platform,audio' label='Platform / Audio' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'platform,audio' row_css='row mb-3' label='Platform / Audio' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
                 {% elif field == form.developer %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'developer,publisher' label='Developer / Publisher' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'developer,publisher' row_css='row mb-3' label='Developer / Publisher' label_css='col-sm-2' field_css='col-sm-5,col-sm-5' only %}
                 {% elif field == form.description %}
-                    {% include 'toolkit/forms/row.html' with fields=form|subset:'description,genre' label='Description / Genre' label_css='col-sm-2' field_css='col-sm-7,col-sm-3' only %}
+                    {% include 'toolkit/forms/row.html' with fields=form|subset:'description,genre' row_css='row mb-3' label='Description / Genre' label_css='col-sm-2' field_css='col-sm-7,col-sm-3' only %}
                 {% endif %}
             {% else %}
-                {% include 'toolkit/forms/field.html' with field=field row_css='form-group row' label_css='col-sm-2' field_css='col-sm-10' only %}
+                {% include 'toolkit/forms/field.html' with field=field row_css='row mb-3' label_css='col-sm-2' field_css='col-sm-10' only %}
             {% endif %}
         {% endfor %}
-	    <div class="form-group row">
+	    <div class="row mb-3">
 		    <div class="col-sm-2"></div>
 		    <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save fa-fw"></i> Save</button>
