@@ -10,7 +10,7 @@
 {% block content %}
     <div class="d-flex flex-wrap">
         <h1><span class="text-muted">Browse</span> {{ view.model|meta:'verbose_name_plural'|title }}</h1>
-        <div class="btn-group align-self-center ml-auto">
+        <div class="btn-group align-self-center ms-auto">
             <a href="{% url view.model|meta:'model_name'|concat:':create' %}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-plus fa-fw"></i> Add</a>
         </div>
     </div>

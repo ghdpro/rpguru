@@ -13,7 +13,7 @@
     {% block head %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css" integrity="sha256-NkXMfPcpoih3/xWDcrJcAX78pHpfwxkhNj0bAf8AMTs=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{% static 'rpguru.css' %}?20200603">
+    <link rel="stylesheet" href="{% static 'rpguru.css' %}?20210520">
     {% endblock %}
     <title>{% block head_title %}RPGuru: Dual Audio Game Database{% endblock head_title %}</title>
     {% block meta %}{% endblock meta %}
@@ -39,12 +39,12 @@
 </footer>
 
 {% block javascript %}
-<script src="{% static 'js/jquery.min.js' %}?v3.5.1"></script>
-<script src="{% static 'js/popper.min.js' %}?v1.16.1"></script>
-<script src="{% static 'js/bootstrap.min.js' %}?v4.5.0"></script>
-<script type="text/javascript">
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+<script src="{% static 'js/popper.min.js' %}?v2.9.2"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}?v5.0.1"></script>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 </script>
 {% endblock javascript %}

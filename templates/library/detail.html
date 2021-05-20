@@ -49,15 +49,15 @@
     <div class="d-flex flex-wrap">
         <h1>{{ object.name }}</h1>
         {% if user.is_superuser %}
-        <div class="align-self-center d-block ml-auto">
+        <div class="align-self-center d-block ms-auto">
             <a class="btn btn-sm btn-outline-secondary" href="{% get_absolute_url object view.model|meta:'model_name'|concat:':update' %}"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a>
-            <a class="btn btn-sm btn-outline-secondary ml-2" href="{% get_absolute_url object view.model|meta:'model_name'|concat:':artwork' %}"><i class="fas fa-file-image fa-fw"></i> Artwork</a>
+            <a class="btn btn-sm btn-outline-secondary ms-2" href="{% get_absolute_url object view.model|meta:'model_name'|concat:':artwork' %}"><i class="fas fa-file-image fa-fw"></i> Artwork</a>
         </div>
         {% endif %}
     </div>
     <div class="clearfix pb-3">
         {% if object.artwork_active %}
-            <img src="{{ object.artwork_active.image.url }}" class="rpguru-attr-img float-right" alt="{{ object.name }}" />
+            <img src="{{ object.artwork_active.image.url }}" class="rpguru-attr-img float-end" alt="{{ object.name }}" />
         {% endif %}
         <p>{{ object.description|markdownify }}</p>
     </div>

@@ -1,9 +1,8 @@
 {
   "dependencies": {
-    "bootstrap": "^4.5.3",
-    "bootswatch": "^4.5.3",
-    "jquery": "3.*",
-    "popper.js": "1.*"
+    "bootstrap": "5.*",
+    "bootswatch": "5.*",
+    "@popperjs/core": "2.*"
   },
   "license": "AGPL-3.0-or-later",
   "repository": {
